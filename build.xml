@@ -1,0 +1,94 @@
+<project name="my project" >
+
+<property name="appversion" value="8.0"/>
+
+<property name="path" value="build/classes"/>
+
+
+<property file="build.properties"/>
+
+
+
+
+
+<!-- clean existing build -->
+
+<target name="clean">
+<delete dir="build"/>
+</target>
+
+<!-- creating destination /required folders -->
+
+<target name="init" depends="clean">
+<mkdir dir="build"/>
+<mkdir dir="build\web"/>
+<mkdir dir="${path}"/>
+<mkdir dir="build\jar"/>
+<mkdir dir="build\dist"/>
+<mkdir dir="build\test"/>
+<mkdir dir="build\test\classes"/>
+<mkdir dir="build\junit"/>
+</target>
+
+<!-- compiling the source code -->
+
+<target name="compile" depends="init">
+ <javac srcdir="src\java"  destdir="${path}"   classpath="lib\junit.jar"/>
+</target>
+
+
+<!-- create jar file -->
+
+<target name="jar" depends="compile">
+<jar destfile="build\jar\Myproject-${appversion}.jar" basedir="${path}"/>
+</target>
+
+
+<!-- copy web content-->
+
+<target name="copy" depends="jar">
+<copydir src="G:\apache-ant-1.10.0-bin\apache-ant-1.10.0\Ant_Practice\src\web"
+           dest="build\web"
+  />
+</target>
+
+<!-- create final .zip build -->
+
+<target name="package" depends="copy">
+
+  <zip destfile="build\dist\Myproject-V${appversion}.zip">
+    <fileset dir="build\jar"/>
+    <fileset dir="build\web"/>
+  </zip>
+
+</target>
+
+<target name="compile-test" depends="package">
+
+<javac srcdir="test"  destdir="build\test\classes"   classpath="build\classes"/>
+
+</target>
+
+<target name="runtests" depends="compile-test">
+	
+		<junit dir="build\test\classes" fork="yes">
+						
+						<classpath>
+							<pathelement path="build\jar\Myproject-${appversion}.jar"/>
+							<pathelement path="build\test\classes"/>
+							<pathelement path="lib\junit.jar"/>
+						</classpath>
+						<formatter type="xml"/>
+						<batchtest todir="build\junit">
+							<fileset dir="build\test\classes" >
+							</fileset>
+						</batchtest>
+		</junit>
+		
+	
+	</target>
+
+
+
+
+</project>
