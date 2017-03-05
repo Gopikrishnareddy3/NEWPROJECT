@@ -1,0 +1,6 @@
+group ID -Project name or company name
+Artifact ID -Module name (project name)
+VersionID-
+Package-jar/war/ear (by default is jar)
+
+
