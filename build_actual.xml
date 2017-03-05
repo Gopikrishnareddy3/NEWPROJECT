@@ -47,7 +47,7 @@
 <!-- copy web content-->
 
 <target name="copy" depends="jar">
-<copydir src="/root/.jenkins/workspace/Test_Build/src/web"
+<copydir src="G:\apache-ant-1.10.0-bin\apache-ant-1.10.0\Ant_Practice\src\web"
            dest="build\web"
   />
 </target>
