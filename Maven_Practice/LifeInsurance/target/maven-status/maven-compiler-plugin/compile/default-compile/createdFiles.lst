@@ -1,6 +1,0 @@
-com\insurance\com\logging\MyServiceLoggingModule.class
-com\insurance\com\jaxrs\DoThisExceptionMapper.class
-com\insurance\com\webservices\MyWebService.class
-com\insurance\com\services\MyServiceImpl.class
-com\insurance\com\exceptions\DoThisException.class
-com\insurance\com\api\MyService.class
